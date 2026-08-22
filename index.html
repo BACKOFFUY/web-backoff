@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>BACKOFF — Lo que imaginás, lo hacemos</title>
+    <title>BACKOFF — Ropa personalizada</title>
 
-    <meta name="description" content="Ropa y productos personalizados. Convertí tus ideas en algo real con BACKOFF.">
+    <meta name="description" content="Ropa personalizada. Remeras, canguros y buzos con tus diseños.">
 
     <style>
         * {
@@ -32,6 +32,7 @@
 
         button {
             font: inherit;
+            cursor: pointer;
         }
 
         /* =========================
@@ -40,7 +41,7 @@
 
         header {
             width: 100%;
-            padding: 22px 5%;
+            padding: 18px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -64,12 +65,14 @@
             font-weight: 600;
         }
 
-        nav a {
-            transition: opacity 0.2s;
-        }
-
         nav a:hover {
             opacity: 0.5;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .header-button {
@@ -81,12 +84,34 @@
             font-weight: 700;
         }
 
+        .cart-button {
+            border: 1px solid #171717;
+            background: transparent;
+            padding: 10px 15px;
+            border-radius: 100px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           SHIPPING BAR
+        ========================= */
+
+        .shipping-bar {
+            background: #171717;
+            color: white;
+            text-align: center;
+            padding: 11px 15px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
         /* =========================
            HERO
         ========================= */
 
         .hero {
-            min-height: 720px;
+            min-height: 680px;
             padding: 70px 5% 80px;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -138,7 +163,7 @@
             border-radius: 100px;
             font-size: 14px;
             font-weight: 700;
-            transition: transform 0.2s, opacity 0.2s;
+            transition: transform 0.2s;
         }
 
         .button-primary {
@@ -157,34 +182,24 @@
 
         .hero-image {
             min-height: 560px;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,255,255,0.15),
-                    rgba(0,0,0,0.1)
-                ),
-                #d8d2c5;
-            border-radius: 4px;
+            background: #d8d2c5;
             display: flex;
-            align-items: flex-end;
-            justify-content: flex-start;
-            padding: 30px;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            position: relative;
         }
 
-        .hero-image::before {
-            content: "TU IDEA\nACÁ";
-            white-space: pre;
-            font-size: clamp(55px, 7vw, 100px);
+        .hero-image span {
+            font-size: clamp(50px, 7vw, 100px);
             line-height: 0.8;
             letter-spacing: -5px;
             font-weight: 900;
             color: rgba(255,255,255,0.8);
+            text-align: center;
         }
 
         /* =========================
-           CATEGORIES
+           SECTIONS
         ========================= */
 
         .section {
@@ -206,10 +221,14 @@
         }
 
         .section-description {
-            max-width: 350px;
+            max-width: 380px;
             color: #666;
             line-height: 1.5;
         }
+
+        /* =========================
+           CATEGORIES
+        ========================= */
 
         .categories {
             display: grid;
@@ -218,7 +237,7 @@
         }
 
         .category {
-            min-height: 300px;
+            min-height: 280px;
             padding: 25px;
             display: flex;
             flex-direction: column;
@@ -249,7 +268,7 @@
         }
 
         .category h3 {
-            font-size: 32px;
+            font-size: 30px;
             letter-spacing: -1.5px;
         }
 
@@ -281,15 +300,16 @@
         .product {
             background: #f0eee8;
             color: #171717;
+            overflow: hidden;
         }
 
         .product-image {
-            height: 360px;
+            height: 400px;
             background: #d5d0c5;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 45px;
+            font-size: 48px;
             font-weight: 900;
             letter-spacing: -3px;
         }
@@ -303,21 +323,39 @@
         }
 
         .product-info {
-            padding: 22px;
+            padding: 25px;
         }
 
         .product-info h3 {
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
             font-size: 20px;
+            font-weight: 800;
             margin-bottom: 8px;
         }
 
         .product-info p {
             font-size: 14px;
             color: #666;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .product-button {
+            width: 100%;
+            border: 0;
+            background: #171717;
+            color: white;
+            padding: 14px;
+            border-radius: 100px;
+            font-weight: 700;
         }
 
         /* =========================
-           PERSONALIZATION
+           PERSONALIZACIÓN
         ========================= */
 
         .custom {
@@ -371,6 +409,37 @@
 
         .step p {
             margin: 0;
+            font-size: 14px;
+        }
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .info-card {
+            padding: 35px 25px;
+            border-right: 1px solid #ccc;
+        }
+
+        .info-card:last-child {
+            border-right: none;
+        }
+
+        .info-card h3 {
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .info-card p {
+            color: #666;
+            line-height: 1.5;
             font-size: 14px;
         }
 
@@ -450,14 +519,153 @@
         }
 
         /* =========================
+           CART
+        ========================= */
+
+        .cart-panel {
+            position: fixed;
+            top: 0;
+            right: -430px;
+            width: min(430px, 100%);
+            height: 100vh;
+            background: #f7f5f0;
+            z-index: 1000;
+            padding: 30px;
+            transition: right 0.3s ease;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+            overflow-y: auto;
+        }
+
+        .cart-panel.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .cart-header h2 {
+            font-size: 30px;
+            letter-spacing: -1px;
+        }
+
+        .close-cart {
+            border: 0;
+            background: transparent;
+            font-size: 25px;
+        }
+
+        .cart-empty {
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 999;
+            display: none;
+        }
+
+        .cart-overlay.open {
+            display: block;
+        }
+
+        /* =========================
+           MODAL PRODUCT
+        ========================= */
+
+        .product-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(700px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #f7f5f0;
+            padding: 35px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border: 0;
+            background: transparent;
+            font-size: 25px;
+        }
+
+        .modal-content h2 {
+            font-size: 40px;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+        }
+
+        .modal-price {
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .option-group {
+            margin-bottom: 25px;
+        }
+
+        .option-group label {
+            display: block;
+            font-weight: 800;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .option-select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #bbb;
+            background: white;
+            font-size: 15px;
+        }
+
+        .modal-note {
+            background: #e9e4d9;
+            padding: 18px;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .modal-add {
+            width: 100%;
+            padding: 17px;
+            border: 0;
+            background: #171717;
+            color: white;
+            border-radius: 100px;
+            font-weight: 800;
+        }
+
+        /* =========================
            MOBILE
         ========================= */
 
         @media (max-width: 800px) {
-
-            header {
-                padding: 18px 5%;
-            }
 
             nav {
                 display: none;
@@ -482,10 +690,6 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            .category {
-                min-height: 230px;
-            }
-
             .products {
                 grid-template-columns: 1fr;
             }
@@ -493,6 +697,19 @@
             .custom {
                 grid-template-columns: 1fr;
                 gap: 50px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-card {
+                border-right: none;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .info-card:last-child {
+                border-bottom: none;
             }
 
             .section-header {
@@ -517,13 +734,7 @@
         @media (max-width: 500px) {
 
             .header-button {
-                padding: 9px 13px;
-                font-size: 12px;
-            }
-
-            .hero {
-                padding-left: 5%;
-                padding-right: 5%;
+                display: none;
             }
 
             .hero h1 {
@@ -532,10 +743,6 @@
 
             .categories {
                 grid-template-columns: 1fr;
-            }
-
-            .category {
-                min-height: 200px;
             }
 
             .section {
@@ -552,31 +759,51 @@
 
 <body>
 
+    <!-- BARRA DE ENVÍOS -->
+
+    <div class="shipping-bar">
+        ENVÍOS GRATIS EN COMPRAS DE $3.000 O MÁS · RETIROS SIN COSTO · ENVÍOS A TODO EL PAÍS
+    </div>
+
+
     <!-- HEADER -->
 
     <header>
+
         <a href="#" class="logo">BACKOFF</a>
 
         <nav>
             <a href="#productos">Productos</a>
             <a href="#personaliza">Personalizá</a>
+            <a href="#info">Info</a>
             <a href="#instagram">Instagram</a>
         </nav>
 
-        <a href="#personaliza" class="header-button">Hacé el tuyo →</a>
+        <div class="header-actions">
+
+            <button class="cart-button" onclick="openCart()">
+                Carrito (<span id="cart-count">0</span>)
+            </button>
+
+            <a href="#personaliza" class="header-button">
+                Hacé el tuyo →
+            </a>
+
+        </div>
+
     </header>
 
 
-    <!-- HERO -->
-
     <main>
+
+        <!-- HERO -->
 
         <section class="hero">
 
             <div class="hero-text">
 
                 <div class="eyebrow">
-                    Ropa + objetos + ideas
+                    Ropa personalizada
                 </div>
 
                 <h1>
@@ -585,24 +812,27 @@
                 </h1>
 
                 <p class="hero-description">
-                    Convertimos tus ideas en cosas que podés usar,
-                    regalar y tener para siempre.
+                    Prendas hechas para vos. Elegí el modelo, color y talle,
+                    y mandanos tu diseño.
                 </p>
 
                 <div class="hero-buttons">
+
                     <a href="#productos" class="button-primary">
                         Ver productos
                     </a>
 
                     <a href="#personaliza" class="button-secondary">
-                        Personalizá algo
+                        ¿Cómo funciona?
                     </a>
+
                 </div>
 
             </div>
 
 
             <div class="hero-image">
+                <span>BACK<br>OFF</span>
             </div>
 
         </section>
@@ -615,12 +845,13 @@
             <div class="section-header">
 
                 <h2 class="section-title">
-                    Elegí qué<br>querés hacer.
+                    Elegí tu<br>prenda.
                 </h2>
 
                 <p class="section-description">
-                    Desde una remera hasta un regalo completamente
-                    personalizado. La idea empieza con vos.
+                    Ropa personalizada con estampado DTF.
+                    Elegí tu prenda, color y talle y después
+                    mandanos tu diseño.
                 </p>
 
             </div>
@@ -632,8 +863,8 @@
                     <span class="category-number">01</span>
 
                     <div>
-                        <h3>Ropa</h3>
-                        <p>Remeras, buzos, hoodies y más.</p>
+                        <h3>Remeras</h3>
+                        <p>Personalizá la tuya.</p>
                     </div>
                 </a>
 
@@ -642,8 +873,8 @@
                     <span class="category-number">02</span>
 
                     <div>
-                        <h3>Cuadernos</h3>
-                        <p>Para tus ideas, recuerdos y proyectos.</p>
+                        <h3>Canguros</h3>
+                        <p>Tu diseño, tu estilo.</p>
                     </div>
                 </a>
 
@@ -652,18 +883,18 @@
                     <span class="category-number">03</span>
 
                     <div>
-                        <h3>Cuadros</h3>
-                        <p>Convertí una imagen en algo para tu espacio.</p>
+                        <h3>Buzos</h3>
+                        <p>Hechos especialmente para vos.</p>
                     </div>
                 </a>
 
 
-                <a href="#personaliza" class="category">
+                <a href="#productos" class="category">
                     <span class="category-number">04</span>
 
                     <div>
-                        <h3>Tu idea</h3>
-                        <p>Traé una idea. Nosotros vemos cómo hacerla.</p>
+                        <h3>Próximamente</h3>
+                        <p>Cuadros · Cuadernos · Tote bags</p>
                     </div>
                 </a>
 
@@ -679,18 +910,20 @@
             <div class="section-header">
 
                 <h2 class="section-title">
-                    Nuestros<br>favoritos.
+                    Elegí.<br>Personalizá.
                 </h2>
 
                 <p class="section-description">
-                    Algunos de los productos que más nos gusta hacer.
-                    Esta sección después va a tener productos reales.
+                    Todos nuestros productos se realizan especialmente
+                    para cada pedido.
                 </p>
 
             </div>
 
 
             <div class="products">
+
+                <!-- REMERA -->
 
                 <article class="product">
 
@@ -699,36 +932,91 @@
                     </div>
 
                     <div class="product-info">
+
                         <h3>Remera personalizada</h3>
-                        <p>Elegí la prenda y hacela tuya.</p>
+
+                        <div class="product-price">
+                            $990
+                        </div>
+
+                        <p>
+                            Incluye una estampa grande y una estampa chica
+                            tipo logo. Diseño enviado por vos.
+                        </p>
+
+                        <button
+                            class="product-button"
+                            onclick="openProduct('Remera personalizada', 990)"
+                        >
+                            Elegir remera →
+                        </button>
+
                     </div>
 
                 </article>
 
 
+                <!-- CANGURO -->
+
                 <article class="product">
 
                     <div class="product-image">
-                        CUADERNO
+                        CANGURO
                     </div>
 
                     <div class="product-info">
-                        <h3>Cuaderno personalizado</h3>
-                        <p>Una tapa diseñada especialmente para vos.</p>
+
+                        <h3>Canguro personalizado</h3>
+
+                        <div class="product-price">
+                            $1.950
+                        </div>
+
+                        <p>
+                            Incluye una estampa grande y una estampa chica
+                            tipo logo. Diseño enviado por vos.
+                        </p>
+
+                        <button
+                            class="product-button"
+                            onclick="openProduct('Canguro personalizado', 1950)"
+                        >
+                            Elegir canguro →
+                        </button>
+
                     </div>
 
                 </article>
 
 
+                <!-- BUZO -->
+
                 <article class="product">
 
                     <div class="product-image">
-                        CUADRO
+                        BUZO
                     </div>
 
                     <div class="product-info">
-                        <h3>Cuadro personalizado</h3>
-                        <p>Tu imagen, tu frase o tu idea.</p>
+
+                        <h3>Buzo personalizado</h3>
+
+                        <div class="product-price">
+                            $1.900
+                        </div>
+
+                        <p>
+                            Incluye una estampa grande y una estampa chica
+                            tipo logo. Diseño enviado por vos.
+                        </p>
+
+                        <button
+                            class="product-button"
+                            onclick="openProduct('Buzo personalizado', 1900)"
+                        >
+                            Elegir buzo →
+                        </button>
+
                     </div>
 
                 </article>
@@ -747,27 +1035,19 @@
                 <div>
 
                     <div class="custom-number">
-                        01 — PERSONALIZÁ
+                        01 — TU DISEÑO
                     </div>
 
                     <h2>
-                        TENÉS<br>
-                        UNA IDEA.
+                        VOS<br>
+                        LO IMAGINÁS.
                     </h2>
 
                     <p>
-                        No necesitás saber de diseño. Mandanos una foto,
-                        una referencia, un dibujo o simplemente contanos
-                        qué querés hacer.
+                        No necesitás diseñarlo desde cero.
+                        Elegí tu prenda, color y talle y después
+                        mandanos tu diseño por WhatsApp.
                     </p>
-
-                    <a
-                        href="https://wa.me/59800000000"
-                        class="button-primary"
-                        target="_blank"
-                    >
-                        Hablar por WhatsApp →
-                    </a>
 
                 </div>
 
@@ -779,9 +1059,9 @@
                         <span class="step-number">01</span>
 
                         <div>
-                            <h3>Contanos tu idea</h3>
+                            <h3>Elegí tu prenda</h3>
                             <p>
-                                Puede ser algo que viste o algo que imaginaste.
+                                Remera, canguro o buzo.
                             </p>
                         </div>
 
@@ -793,9 +1073,9 @@
                         <span class="step-number">02</span>
 
                         <div>
-                            <h3>Elegimos el producto</h3>
+                            <h3>Elegí color y talle</h3>
                             <p>
-                                Ropa, cuaderno, cuadro u otra cosa.
+                                Tenemos talles del S al XXXL.
                             </p>
                         </div>
 
@@ -807,13 +1087,60 @@
                         <span class="step-number">03</span>
 
                         <div>
-                            <h3>Lo hacemos realidad</h3>
+                            <h3>Mandanos tu diseño</h3>
                             <p>
-                                Preparamos tu diseño y producimos tu pedido.
+                                Después de realizar tu pedido,
+                                te indicaremos cómo enviarlo por WhatsApp.
                             </p>
                         </div>
 
                     </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFORMACIÓN -->
+
+        <section class="section" id="info">
+
+            <div class="info-grid">
+
+                <div class="info-card">
+
+                    <h3>5 días hábiles</h3>
+
+                    <p>
+                        Las prendas se realizan especialmente para cada pedido.
+                        El tiempo aproximado de producción es de 5 días hábiles.
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>Envíos a todo Uruguay</h3>
+
+                    <p>
+                        El envío tiene un costo de $250.
+                        En compras de $3.000 o más, el envío es gratis.
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>Retiro sin costo</h3>
+
+                    <p>
+                        Cuando tu pedido esté pronto coordinamos contigo
+                        el retiro en nuestro punto de Pick Up en Palermo.
+                    </p>
 
                 </div>
 
@@ -870,21 +1197,17 @@
 
                     <a href="#productos">Productos</a>
                     <a href="#personaliza">Personalizá</a>
-                    <a href="#instagram">Instagram</a>
+                    <a href="#info">Información</a>
 
                 </div>
 
 
                 <div class="footer-column">
 
-                    <h4>Contacto</h4>
+                    <h4>Seguinos</h4>
 
                     <a href="https://instagram.com/backoffuy" target="_blank">
                         Instagram
-                    </a>
-
-                    <a href="https://wa.me/59800000000" target="_blank">
-                        WhatsApp
                     </a>
 
                 </div>
@@ -899,6 +1222,375 @@
         </div>
 
     </footer>
+
+
+    <!-- OVERLAY DEL CARRITO -->
+
+    <div
+        class="cart-overlay"
+        id="cart-overlay"
+        onclick="closeCart()"
+    ></div>
+
+
+    <!-- CARRITO -->
+
+    <aside class="cart-panel" id="cart-panel">
+
+        <div class="cart-header">
+
+            <h2>Tu carrito</h2>
+
+            <button
+                class="close-cart"
+                onclick="closeCart()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div id="cart-content">
+
+            <p class="cart-empty">
+                Todavía no agregaste ningún producto.
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MODAL PRODUCTO -->
+
+    <div class="product-modal" id="product-modal">
+
+        <div class="modal-content">
+
+            <button
+                class="modal-close"
+                onclick="closeProduct()"
+            >
+                ×
+            </button>
+
+            <h2 id="modal-product-name">
+                Producto
+            </h2>
+
+            <div class="modal-price" id="modal-product-price">
+                $0
+            </div>
+
+
+            <div class="option-group">
+
+                <label for="product-color">
+                    Color
+                </label>
+
+                <select
+                    id="product-color"
+                    class="option-select"
+                >
+
+                    <option>Blanco</option>
+                    <option>Negro</option>
+                    <option>Marrón</option>
+                    <option>Beige</option>
+                    <option>Azul</option>
+                    <option>Rojo</option>
+                    <option>Rosado</option>
+                    <option>Violeta</option>
+                    <option>Gris</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="option-group">
+
+                <label for="product-size">
+                    Talle
+                </label>
+
+                <select
+                    id="product-size"
+                    class="option-select"
+                >
+
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+                    <option>XXXL</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="modal-note">
+
+                <strong>Tu diseño</strong><br>
+
+                El producto incluye una estampa grande y una
+                estampa chica tipo logo. Después de realizar
+                tu pedido te indicaremos cómo enviarnos tus diseños.
+
+            </div>
+
+
+            <button
+                class="modal-add"
+                onclick="addToCart()"
+            >
+                Agregar al carrito
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let selectedProduct = {
+            name: "",
+            price: 0
+        };
+
+        let cart = [];
+
+
+        function openProduct(name, price) {
+
+            selectedProduct.name = name;
+            selectedProduct.price = price;
+
+            document.getElementById("modal-product-name").textContent = name;
+
+            document.getElementById("modal-product-price").textContent =
+                "$" + price.toLocaleString("es-UY");
+
+            document.getElementById("product-modal").classList.add("open");
+        }
+
+
+        function closeProduct() {
+
+            document.getElementById("product-modal").classList.remove("open");
+
+        }
+
+
+        function addToCart() {
+
+            const color =
+                document.getElementById("product-color").value;
+
+            const size =
+                document.getElementById("product-size").value;
+
+
+            cart.push({
+
+                name: selectedProduct.name,
+
+                price: selectedProduct.price,
+
+                color: color,
+
+                size: size
+
+            });
+
+
+            updateCart();
+
+            closeProduct();
+
+            openCart();
+
+        }
+
+
+        function updateCart() {
+
+            const count =
+                document.getElementById("cart-count");
+
+            count.textContent = cart.length;
+
+
+            const content =
+                document.getElementById("cart-content");
+
+
+            if (cart.length === 0) {
+
+                content.innerHTML = `
+                    <p class="cart-empty">
+                        Todavía no agregaste ningún producto.
+                    </p>
+                `;
+
+                return;
+            }
+
+
+            let total = 0;
+
+            let html = "";
+
+
+            cart.forEach((item, index) => {
+
+                total += item.price;
+
+                html += `
+
+                    <div style="
+                        padding: 20px 0;
+                        border-bottom: 1px solid #ccc;
+                    ">
+
+                        <strong>
+                            ${item.name}
+                        </strong>
+
+                        <p style="
+                            color:#666;
+                            margin-top:7px;
+                            font-size:14px;
+                        ">
+                            ${item.color} · Talle ${item.size}
+                        </p>
+
+                        <p style="
+                            margin-top:10px;
+                            font-weight:800;
+                        ">
+                            $${item.price.toLocaleString("es-UY")}
+                        </p>
+
+                        <button
+                            onclick="removeFromCart(${index})"
+                            style="
+                                margin-top:10px;
+                                border:0;
+                                background:none;
+                                text-decoration:underline;
+                                font-size:12px;
+                            "
+                        >
+                            Eliminar
+                        </button>
+
+                    </div>
+
+                `;
+
+            });
+
+
+            html += `
+
+                <div style="
+                    padding-top:25px;
+                ">
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        font-weight:800;
+                        font-size:20px;
+                    ">
+
+                        <span>Subtotal</span>
+
+                        <span>
+                            $${total.toLocaleString("es-UY")}
+                        </span>
+
+                    </div>
+
+
+                    <p style="
+                        margin-top:15px;
+                        color:#666;
+                        font-size:13px;
+                        line-height:1.5;
+                    ">
+                        El envío cuesta $250.
+                        En compras de $3.000 o más,
+                        el envío es gratis.
+                    </p>
+
+
+                    <button
+                        style="
+                            width:100%;
+                            margin-top:25px;
+                            padding:17px;
+                            border:0;
+                            background:#171717;
+                            color:white;
+                            border-radius:100px;
+                            font-weight:800;
+                        "
+                        onclick="alert('El checkout y los medios de pago los conectaremos en la siguiente etapa.')"
+                    >
+                        Continuar con la compra
+                    </button>
+
+                </div>
+
+            `;
+
+
+            content.innerHTML = html;
+
+        }
+
+
+        function removeFromCart(index) {
+
+            cart.splice(index, 1);
+
+            updateCart();
+
+        }
+
+
+        function openCart() {
+
+            document
+                .getElementById("cart-panel")
+                .classList.add("open");
+
+            document
+                .getElementById("cart-overlay")
+                .classList.add("open");
+
+        }
+
+
+        function closeCart() {
+
+            document
+                .getElementById("cart-panel")
+                .classList.remove("open");
+
+            document
+                .getElementById("cart-overlay")
+                .classList.remove("open");
+
+        }
+
+    </script>
 
 </body>
 </html>
