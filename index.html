@@ -3,16 +3,902 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backoff | Personalizá lo que quieras</title>
+
+    <title>BACKOFF — Lo que imaginás, lo hacemos</title>
+
+    <meta name="description" content="Ropa y productos personalizados. Convertí tus ideas en algo real con BACKOFF.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f5f0;
+            color: #171717;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            width: 100%;
+            padding: 22px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f7f5f0;
+            border-bottom: 1px solid #dedbd3;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav a {
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 0.5;
+        }
+
+        .header-button {
+            background: #171717;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 720px;
+            padding: 70px 5% 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 8vw, 120px);
+            line-height: 0.85;
+            letter-spacing: -7px;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 span {
+            display: block;
+        }
+
+        .hero-description {
+            max-width: 430px;
+            font-size: 20px;
+            line-height: 1.4;
+            margin-bottom: 35px;
+            color: #555;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .button-primary,
+        .button-secondary {
+            display: inline-block;
+            padding: 16px 25px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .button-primary {
+            background: #171717;
+            color: white;
+        }
+
+        .button-secondary {
+            border: 1px solid #171717;
+        }
+
+        .button-primary:hover,
+        .button-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            min-height: 560px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.15),
+                    rgba(0,0,0,0.1)
+                ),
+                #d8d2c5;
+            border-radius: 4px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            padding: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-image::before {
+            content: "TU IDEA\nACÁ";
+            white-space: pre;
+            font-size: clamp(55px, 7vw, 100px);
+            line-height: 0.8;
+            letter-spacing: -5px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* =========================
+           CATEGORIES
+        ========================= */
+
+        .section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 30px;
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            font-size: clamp(40px, 5vw, 70px);
+            letter-spacing: -3px;
+            line-height: 0.95;
+        }
+
+        .section-description {
+            max-width: 350px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .category {
+            min-height: 300px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: #ded8cb;
+            transition: transform 0.25s;
+        }
+
+        .category:nth-child(2) {
+            background: #c8d6d0;
+        }
+
+        .category:nth-child(3) {
+            background: #d8c2c0;
+        }
+
+        .category:nth-child(4) {
+            background: #ddd5b9;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-number {
+            font-size: 12px;
+            margin-bottom: auto;
+        }
+
+        .category h3 {
+            font-size: 32px;
+            letter-spacing: -1.5px;
+        }
+
+        .category p {
+            margin-top: 8px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .products-section {
+            background: #171717;
+            color: white;
+        }
+
+        .products-section .section-description {
+            color: #aaa;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .product {
+            background: #f0eee8;
+            color: #171717;
+        }
+
+        .product-image {
+            height: 360px;
+            background: #d5d0c5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+            font-weight: 900;
+            letter-spacing: -3px;
+        }
+
+        .product:nth-child(2) .product-image {
+            background: #cbd8d3;
+        }
+
+        .product:nth-child(3) .product-image {
+            background: #d7c7c5;
+        }
+
+        .product-info {
+            padding: 22px;
+        }
+
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .product-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* =========================
+           PERSONALIZATION
+        ========================= */
+
+        .custom {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .custom-number {
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .custom h2 {
+            font-size: clamp(45px, 6vw, 80px);
+            line-height: 0.9;
+            letter-spacing: -4px;
+            margin-bottom: 30px;
+        }
+
+        .custom p {
+            max-width: 450px;
+            color: #666;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .steps {
+            border-top: 1px solid #ccc;
+        }
+
+        .step {
+            padding: 25px 0;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            gap: 25px;
+        }
+
+        .step-number {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .step h3 {
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+
+        .step p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* =========================
+           INSTAGRAM
+        ========================= */
+
+        .instagram {
+            background: #e5dfd3;
+            text-align: center;
+        }
+
+        .instagram h2 {
+            font-size: clamp(45px, 7vw, 90px);
+            letter-spacing: -5px;
+            margin-bottom: 20px;
+        }
+
+        .instagram p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .instagram-handle {
+            font-size: 20px;
+            font-weight: 800;
+            text-decoration: underline;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #171717;
+            color: white;
+            padding: 70px 5% 30px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo {
+            font-size: 45px;
+            font-weight: 900;
+            letter-spacing: -3px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 15px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
+
+        .footer-column a {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            header {
+                padding: 18px 5%;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 70px;
+                letter-spacing: -4px;
+            }
+
+            .hero-image {
+                min-height: 400px;
+            }
+
+            .categories {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .category {
+                min-height: 230px;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .custom {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .section-header {
+                display: block;
+            }
+
+            .section-description {
+                margin-top: 20px;
+            }
+
+            .footer-top {
+                display: block;
+            }
+
+            .footer-links {
+                margin-top: 40px;
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .header-button {
+                padding: 9px 13px;
+                font-size: 12px;
+            }
+
+            .hero {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .hero h1 {
+                font-size: 58px;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .category {
+                min-height: 200px;
+            }
+
+            .section {
+                padding-top: 70px;
+                padding-bottom: 70px;
+            }
+
+            .instagram h2 {
+                font-size: 55px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>BACKOFF</h1>
+    <!-- HEADER -->
 
-    <h2>Hacelo tuyo.</h2>
+    <header>
+        <a href="#" class="logo">BACKOFF</a>
 
-    <p>Ropa y productos personalizados, hechos para vos.</p>
+        <nav>
+            <a href="#productos">Productos</a>
+            <a href="#personaliza">Personalizá</a>
+            <a href="#instagram">Instagram</a>
+        </nav>
+
+        <a href="#personaliza" class="header-button">Hacé el tuyo →</a>
+    </header>
+
+
+    <!-- HERO -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <div class="eyebrow">
+                    Ropa + objetos + ideas
+                </div>
+
+                <h1>
+                    LO QUE
+                    <span>IMAGINÁS.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Convertimos tus ideas en cosas que podés usar,
+                    regalar y tener para siempre.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#productos" class="button-primary">
+                        Ver productos
+                    </a>
+
+                    <a href="#personaliza" class="button-secondary">
+                        Personalizá algo
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="hero-image">
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORÍAS -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Elegí qué<br>querés hacer.
+                </h2>
+
+                <p class="section-description">
+                    Desde una remera hasta un regalo completamente
+                    personalizado. La idea empieza con vos.
+                </p>
+
+            </div>
+
+
+            <div class="categories">
+
+                <a href="#productos" class="category">
+                    <span class="category-number">01</span>
+
+                    <div>
+                        <h3>Ropa</h3>
+                        <p>Remeras, buzos, hoodies y más.</p>
+                    </div>
+                </a>
+
+
+                <a href="#productos" class="category">
+                    <span class="category-number">02</span>
+
+                    <div>
+                        <h3>Cuadernos</h3>
+                        <p>Para tus ideas, recuerdos y proyectos.</p>
+                    </div>
+                </a>
+
+
+                <a href="#productos" class="category">
+                    <span class="category-number">03</span>
+
+                    <div>
+                        <h3>Cuadros</h3>
+                        <p>Convertí una imagen en algo para tu espacio.</p>
+                    </div>
+                </a>
+
+
+                <a href="#personaliza" class="category">
+                    <span class="category-number">04</span>
+
+                    <div>
+                        <h3>Tu idea</h3>
+                        <p>Traé una idea. Nosotros vemos cómo hacerla.</p>
+                    </div>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCTOS -->
+
+        <section class="section products-section" id="productos">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Nuestros<br>favoritos.
+                </h2>
+
+                <p class="section-description">
+                    Algunos de los productos que más nos gusta hacer.
+                    Esta sección después va a tener productos reales.
+                </p>
+
+            </div>
+
+
+            <div class="products">
+
+                <article class="product">
+
+                    <div class="product-image">
+                        REMERA
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Remera personalizada</h3>
+                        <p>Elegí la prenda y hacela tuya.</p>
+                    </div>
+
+                </article>
+
+
+                <article class="product">
+
+                    <div class="product-image">
+                        CUADERNO
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Cuaderno personalizado</h3>
+                        <p>Una tapa diseñada especialmente para vos.</p>
+                    </div>
+
+                </article>
+
+
+                <article class="product">
+
+                    <div class="product-image">
+                        CUADRO
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Cuadro personalizado</h3>
+                        <p>Tu imagen, tu frase o tu idea.</p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- PERSONALIZACIÓN -->
+
+        <section class="section" id="personaliza">
+
+            <div class="custom">
+
+                <div>
+
+                    <div class="custom-number">
+                        01 — PERSONALIZÁ
+                    </div>
+
+                    <h2>
+                        TENÉS<br>
+                        UNA IDEA.
+                    </h2>
+
+                    <p>
+                        No necesitás saber de diseño. Mandanos una foto,
+                        una referencia, un dibujo o simplemente contanos
+                        qué querés hacer.
+                    </p>
+
+                    <a
+                        href="https://wa.me/59800000000"
+                        class="button-primary"
+                        target="_blank"
+                    >
+                        Hablar por WhatsApp →
+                    </a>
+
+                </div>
+
+
+                <div class="steps">
+
+                    <div class="step">
+
+                        <span class="step-number">01</span>
+
+                        <div>
+                            <h3>Contanos tu idea</h3>
+                            <p>
+                                Puede ser algo que viste o algo que imaginaste.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <span class="step-number">02</span>
+
+                        <div>
+                            <h3>Elegimos el producto</h3>
+                            <p>
+                                Ropa, cuaderno, cuadro u otra cosa.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <span class="step-number">03</span>
+
+                        <div>
+                            <h3>Lo hacemos realidad</h3>
+                            <p>
+                                Preparamos tu diseño y producimos tu pedido.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INSTAGRAM -->
+
+        <section class="section instagram" id="instagram">
+
+            <p>
+                MÁS DE 15.000 PERSONAS YA NOS SIGUEN
+            </p>
+
+            <h2>
+                @BACKOFFUY
+            </h2>
+
+            <p>
+                Diseños, ideas y cosas que hacemos todos los días.
+            </p>
+
+            <a
+                href="https://instagram.com/backoffuy"
+                target="_blank"
+                class="instagram-handle"
+            >
+                Seguinos en Instagram →
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="footer-logo">
+                BACKOFF
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="footer-column">
+
+                    <h4>Explorá</h4>
+
+                    <a href="#productos">Productos</a>
+                    <a href="#personaliza">Personalizá</a>
+                    <a href="#instagram">Instagram</a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>Contacto</h4>
+
+                    <a href="https://instagram.com/backoffuy" target="_blank">
+                        Instagram
+                    </a>
+
+                    <a href="https://wa.me/59800000000" target="_blank">
+                        WhatsApp
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+            © 2026 BACKOFF. Todos los derechos reservados.
+        </div>
+
+    </footer>
 
 </body>
 </html>
