@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BACKOFF Admin</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f4f2;
+      color: #171717;
+    }
+
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: #171717;
+      color: white;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav button {
+      border: 0;
+      background: transparent;
+      color: #bbb;
+      text-align: left;
+      padding: 12px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .nav button.active,
+    .nav button:hover {
+      background: #2a2a2a;
+      color: white;
+    }
+
+    .sidebar-bottom {
+      color: #777;
+      font-size: 12px;
+    }
+
+    .main {
+      padding: 35px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+    }
+
+    .topbar h1 {
+      font-size: 32px;
+      letter-spacing: -1.5px;
+    }
+
+    .status {
+      font-size: 12px;
+      background: #e8e8e3;
+      padding: 8px 12px;
+      border-radius: 100px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 22px;
+    }
+
+    .card span {
+      display: block;
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 8px;
+    }
+
+    .card strong {
+      font-size: 28px;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #ddd;
+      margin-bottom: 25px;
+    }
+
+    .panel-header {
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .panel-header h2 {
+      font-size: 20px;
+    }
+
+    .primary-button {
+      border: 0;
+      background: #171717;
+      color: white;
+      padding: 11px 16px;
+      border-radius: 100px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 15px 20px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    th {
+      font-size: 12px;
+      color: #777;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #efefeb;
+      padding: 6px 9px;
+      border-radius: 100px;
+      font-size: 12px;
+    }
+
+    .edit-button {
+      border: 1px solid #ccc;
+      background: white;
+      padding: 7px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .empty {
+      padding: 30px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .admin-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        min-height: auto;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="admin-layout">
+
+    <aside class="sidebar">
+
+      <div>
+        <div class="logo">BACKOFF ADMIN</div>
+
+        <div class="nav">
+          <button class="active" onclick="showSection('dashboard', this)">
+            Dashboard
+          </button>
+
+          <button onclick="showSection('products', this)">
+            Productos
+          </button>
+
+          <button onclick="showSection('stock', this)">
+            Stock
+          </button>
+
+          <button onclick="showSection('orders', this)">
+            Pedidos
+          </button>
+
+          <button onclick="showSection('settings', this)">
+            Configuración
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        backoff.uy/admin
+      </div>
+
+    </aside>
+
+
+    <main class="main">
+
+      <div class="topbar">
+        <h1>Administrador</h1>
+        <div class="status">Modo prueba</div>
+      </div>
+
+
+      <!-- DASHBOARD -->
+
+      <section id="dashboard" class="section active">
+
+        <div class="cards">
+
+          <div class="card">
+            <span>Productos</span>
+            <strong>3</strong>
+          </div>
+
+          <div class="card">
+            <span>Pedidos pendientes</span>
+            <strong>0</strong>
+          </div>
+
+          <div class="card">
+            <span>Ventas</span>
+            <strong>$0</strong>
+          </div>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <h2>Resumen</h2>
+          </div>
+
+          <div class="empty">
+            Acá vas a ver un resumen de productos, stock y pedidos.
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PRODUCTOS -->
+
+      <section id="products" class="section">
+
+        <div class="panel">
+
+          <div class="panel-header">
+
+            <h2>Productos</h2>
+
+            <button class="primary-button">
+              + Nuevo producto
+            </button>
+
+          </div>
+
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Precio</th>
+                  <th>Categoría</th>
+                  <th>Estado</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <tr>
+                  <td>Remera personalizada</td>
+                  <td>$990</td>
+                  <td>Ropa</td>
+                  <td><span class="tag">Activo</span></td>
+                  <td>
+                    <button class="edit-button">
+                      Editar
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Canguro personalizado</td>
+                  <td>$1.950</td>
+                  <td>Ropa</td>
+                  <td><span class="tag">Activo</span></td>
+                  <td>
+                    <button class="edit-button">
+                      Editar
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Buzo personalizado</td>
+                  <td>$1.900</td>
+                  <td>Ropa</td>
+                  <td><span class="tag">Activo</span></td>
+                  <td>
+                    <button class="edit-button">
+                      Editar
+                    </button>
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- STOCK -->
+
+      <section id="stock" class="section">
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <h2>Stock</h2>
+          </div>
+
+          <div class="empty">
+            Acá vas a poder elegir producto, color y talle y modificar el stock.
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PEDIDOS -->
+
+      <section id="orders" class="section">
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <h2>Pedidos</h2>
+          </div>
+
+          <div class="empty">
+            Cuando conectemos el checkout, acá van a aparecer los pedidos.
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CONFIGURACIÓN -->
+
+      <section id="settings" class="section">
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <h2>Configuración</h2>
+          </div>
+
+          <div class="empty">
+            Acá vas a poder cambiar envío, monto mínimo para envío gratis, WhatsApp y otros datos generales.
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <script>
+    function showSection(sectionId, button) {
+
+      document
+        .querySelectorAll(".section")
+        .forEach(section => {
+          section.classList.remove("active");
+        });
+
+      document
+        .getElementById(sectionId)
+        .classList.add("active");
+
+
+      document
+        .querySelectorAll(".nav button")
+        .forEach(btn => {
+          btn.classList.remove("active");
+        });
+
+      button.classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
